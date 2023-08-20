@@ -230,7 +230,8 @@ blt a3, a2, loop
 add a0, a4, zero
 ret
 ```
-![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/6fd83b96-74d3-4362-bf61-b3b114c464a1)
+![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/4d109bc3-c119-4835-b32c-1d2a00b6d5e6)
+
 
 
 
