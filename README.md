@@ -26,111 +26,175 @@ The objective of VLSI physical design for ASICsis to transform a digital circuit
 
 # ***Command to download RISC-V toolchain on your ubuntu***
 
-Install Git and Vim with automatic "yes" response to prompts
+***Install Git and Vim with automatic "yes" response to prompts***
+
 `sudo apt-get install git vim -y`
 
-Install various development tools and libraries
+***Install various development tools and libraries***
+
 `sudo apt-get install autoconf automake autotools-dev curl libmpc-dev libmpfr-dev libgmp-dev gawk build-essential bison flex texinfo gperf libtool patchutils bc zlib1g-dev git libexpat1-dev gtkwave -y`
 
-Navigate to the home directory
+***Navigate to the home directory***
+
 `cd`
 
-Store the current directory path
+***Store the current directory path***
+
 `pwd=$PWD`
 
-Create a directory for the RISC-V toolchain
+***Create a directory for the RISC-V toolchain***
+
 `mkdir riscv_toolchain`
 
-Enter the RISC-V toolchain directory
+***Enter the RISC-V toolchain directory***
+
 `cd riscv_toolchain`
 
-Download and extract the RISC-V GCC toolchain
+***Download and extract the RISC-V GCC toolchain***
+
 `wget "https://static.dev.sifive.com/dev-tools/riscv64-unknown-elf-gcc-8.3.0-2019.08.0-x86_64-linux-ubuntu14.tar.gz"
 tar -xvzf riscv64-unknown-elf-gcc-8.3.0-2019.08.0-x86_64-linux-ubuntu14.tar.gz `
 
-Add the RISC-V toolchain's bin directory to the PATH
+***Add the RISC-V toolchain's bin directory to the PATH***
+
 `export PATH=$pwd/riscv_toolchain/riscv64-unknown-elf-gcc-8.3.0-2019.08.0-x86_64-linux-ubuntu14/bin:$PATH`
 
-Install device-tree-compiler
+***Install device-tree-compiler***
+
 `sudo apt-get install device-tree-compiler -y`
 
-Clone the RISC-V ISA simulator repository
+***Clone the RISC-V ISA simulator repository***
+
 `git clone https://github.com/riscv/riscv-isa-sim.git`
 
-Enter the RISC-V ISA simulator directory
+***Enter the RISC-V ISA simulator directory***
+
 `cd riscv-isa-sim/`
 
-Create a build directory
+***Create a build directory***
+
 `mkdir build`
 
-Enter the build directory
+***Enter the build directory***
+
 `cd build`
 
-Configure the RISC-V ISA simulator build
+***Configure the RISC-V ISA simulator build***
+
 `../configure --prefix=$pwd/riscv_toolchain/riscv64-unknown-elf-gcc-8.3.0-2019.08.0-x86_64-linux-ubuntu14`
 
-Build the RISC-V ISA simulator
+***Build the RISC-V ISA simulator***
+
 `make`
 
-Install the RISC-V ISA simulator
+***Install the RISC-V ISA simulator***
+
 `sudo make install`
 
-Navigate back to the RISC-V toolchain directory
+***Navigate back to the RISC-V toolchain directory***
+
 `cd $pwd/riscv_toolchain`
 
-Clone the RISC-V proxy kernel repository
+***Clone the RISC-V proxy kernel repository***
+
 `git clone https://github.com/riscv/riscv-pk.git`
 
-Enter the RISC-V proxy kernel directory
+***Enter the RISC-V proxy kernel directory***
+
 `cd riscv-pk/`
 
-Create a build directory
+***Create a build directory***
+
 `mkdir build`
 
-Enter the build directory
+***Enter the build directory***
+
 `cd build`
 
-Configure the RISC-V proxy kernel build
+***Configure the RISC-V proxy kernel build***
+
 `../configure --prefix=$pwd/riscv_toolchain/riscv64-unknown-elf-gcc-8.3.0-2019.08.0-x86_64-linux-ubuntu14 --host=riscv64-unknown-elf
 `
-Build the RISC-V proxy kernel
-`make`
+***Build the RISC-V proxy kernel***
 
-Install the RISC-V proxy kernel
+`make`
+***
+Install the RISC-V proxy kernel***
+
 `sudo make install`
 
-Add the RISC-V proxy kernel's bin directory to the PATH
+***Add the RISC-V proxy kernel's bin directory to the PATH***
+
 `export PATH=$pwd/riscv_toolchain/riscv64-unknown-elf-gcc-8.3.0-2019.08.0-x86_64-linux-ubuntu14/riscv64-unknown-elf/bin:$PATH`
 
-Navigate back to the RISC-V toolchain directory
+***Navigate back to the RISC-V toolchain directory***
+
 `cd $pwd/riscv_toolchain`
 
-Clone the Icarus Verilog repository
+***Clone the Icarus Verilog repository***
+
 `git clone https://github.com/steveicarus/iverilog.git`
 
-Enter the Icarus Verilog directory
+***Enter the Icarus Verilog directory***
+
 `cd iverilog/`
 
-Check out the v10-branch of Icarus Verilog
+***Check out the v10-branch of Icarus Verilog***
+
 `git checkout --track -b v10-branch origin/v10-branch`
 
-Update the repository
+***Update the repository***
+
 `git pull`
 
-Make autoconf.sh executable
+***Make autoconf.sh executable***
+
 `chmod 777 autoconf.sh`
 
-Run autoconf.sh
+***Run autoconf.sh***
+
 `./autoconf.sh`
 
-Configure Icarus Verilog
+***Configure Icarus Verilog***
+
 `./configure`
 
-Build Icarus Verilog
+***Build Icarus Verilog***
+
 `make`
 
-Install Icarus Verilog
+***Install Icarus Verilog***
+
 `sudo make install  `
+
+**Update Your Path:**
+
+**After installing, you'll want to add the toolchain binaries to your PATH:**
+
+`echo 'export PATH=$PATH:/opt/riscv/bin' >> ~/.bashrc
+source ~/.bashrc`
+
+# updated tools installation for day 3 and day 4
+`git clone https://github.com/YosysHQ/yosys.git `
+
+`cd yosys`
+
+`sudo apt install make`
+
+`sudo apt-get update`
+
+`sudo apt-get install build-essential clang bison flex  libreadline-dev gawk tcl-dev libffi-dev git  graphviz xdot pkg-config python3 libboost-system-dev libboost-python-dev libboost-filesystem-dev zlib1g-dev`
+
+*Comment the export path in bashrc for the code given below to work*
+
+`make config-gcc`
+
+`make -j 4`
+
+`sudo make install`
+
+`sudo apt install gtkwave`
+
 
 
 # TABLE OF CONTENTS
