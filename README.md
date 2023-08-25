@@ -1,6 +1,138 @@
 
 # VLSI Physical Design for ASICs
 The objective of VLSI physical design for ASICsis to transform a digital circuit's logical representation into a physical layout that meets various performance, power, area, and manufacturability requirements.
+# ****1. Installation of Virtual Machine and RISC-V GCC compiler****
+
+- [VirtualBox](https://www.virtualbox.org/wiki/Downloads) ← Click on the link to head to the downloads page. Download and install the windows hosts version.
+    - Open the VirtualBox application and click on “New”
+    - Give a name to the VM and choose the folder where your VM files will reside.
+    - For iso file you need to install the iso image from these sites.
+        - For Ubuntu: http://ubuntu-releases.mirror.net.in/ubuntu/releases/jammy/ubuntu-22.04.3-desktop-amd64.iso (for Intel and AMD users)
+        - Please refer to the ubuntu website for MacOS (M1, M2) users.
+    - Download any one of the two iso file and include it in the iso option.
+    - For type, choose “Linux” and for version either choose “Ubuntu 22.04 (64-bit)”.
+    - Rest is set to default. Please DM either one of us if you’re facing issues at this point.
+    - Click on “Next” and for base memory set it to “2048MB” if you have less than 8gb, if you have more, set it to “4096MB”.
+    - For the Processors, leave it in “1” unless you have 4+ cores. If you have more than 4 cores, you can set it to “2”.
+    - Click on “Next” and in the “Create a virtual hard disk now” and set it to 50GB or 100GB. Please make sure you have enough space for this, but this space that you allocate is dynamic so don’t worry, it will only take up upto 100GB when required.
+    - Click on “Next” and “Finish”.
+    - If you’re having issues connecting to the network inside the VM, click on the “Devices” option on the menu bar above on the VirtualBox application. In that menu, choose “Network” and enable “Connect Network Adapter”. If it still does not work after enabling, please restart the VM and see if that works.
+    
+    ---
+    
+    - For the riscv-gcc compiler, head over to this link https://www.embecosm.com/resources/tool-chain-downloads/ and install the tar.gz file based on your Linux version. **************Make sure you do this on the Virtual Machine!**************
+        - For Ubuntu VMs
+          -v22.04
+
+# ***Command to download RISC-V toolchain on your ubuntu***
+
+# Install Git and Vim with automatic "yes" response to prompts
+sudo apt-get install git vim -y
+
+# Install various development tools and libraries
+sudo apt-get install autoconf automake autotools-dev curl libmpc-dev libmpfr-dev libgmp-dev gawk build-essential bison flex texinfo gperf libtool patchutils bc zlib1g-dev git libexpat1-dev gtkwave -y
+
+# Navigate to the home directory
+cd
+
+# Store the current directory path
+pwd=$PWD
+
+# Create a directory for the RISC-V toolchain
+mkdir riscv_toolchain
+
+# Enter the RISC-V toolchain directory
+cd riscv_toolchain
+
+# Download and extract the RISC-V GCC toolchain
+wget "https://static.dev.sifive.com/dev-tools/riscv64-unknown-elf-gcc-8.3.0-2019.08.0-x86_64-linux-ubuntu14.tar.gz"
+tar -xvzf riscv64-unknown-elf-gcc-8.3.0-2019.08.0-x86_64-linux-ubuntu14.tar.gz 
+
+# Add the RISC-V toolchain's bin directory to the PATH
+export PATH=$pwd/riscv_toolchain/riscv64-unknown-elf-gcc-8.3.0-2019.08.0-x86_64-linux-ubuntu14/bin:$PATH
+
+# Install device-tree-compiler
+sudo apt-get install device-tree-compiler -y
+
+# Clone the RISC-V ISA simulator repository
+git clone https://github.com/riscv/riscv-isa-sim.git
+
+# Enter the RISC-V ISA simulator directory
+cd riscv-isa-sim/
+
+# Create a build directory
+mkdir build
+
+# Enter the build directory
+cd build
+
+# Configure the RISC-V ISA simulator build
+../configure --prefix=$pwd/riscv_toolchain/riscv64-unknown-elf-gcc-8.3.0-2019.08.0-x86_64-linux-ubuntu14
+
+# Build the RISC-V ISA simulator
+make
+
+# Install the RISC-V ISA simulator
+sudo make install
+
+# Navigate back to the RISC-V toolchain directory
+cd $pwd/riscv_toolchain
+
+# Clone the RISC-V proxy kernel repository
+git clone https://github.com/riscv/riscv-pk.git
+
+# Enter the RISC-V proxy kernel directory
+cd riscv-pk/
+
+# Create a build directory
+mkdir build
+
+# Enter the build directory
+cd build
+
+# Configure the RISC-V proxy kernel build
+../configure --prefix=$pwd/riscv_toolchain/riscv64-unknown-elf-gcc-8.3.0-2019.08.0-x86_64-linux-ubuntu14 --host=riscv64-unknown-elf
+
+# Build the RISC-V proxy kernel
+make
+
+# Install the RISC-V proxy kernel
+sudo make install
+
+# Add the RISC-V proxy kernel's bin directory to the PATH
+export PATH=$pwd/riscv_toolchain/riscv64-unknown-elf-gcc-8.3.0-2019.08.0-x86_64-linux-ubuntu14/riscv64-unknown-elf/bin:$PATH
+
+# Navigate back to the RISC-V toolchain directory
+cd $pwd/riscv_toolchain
+
+# Clone the Icarus Verilog repository
+git clone https://github.com/steveicarus/iverilog.git
+
+# Enter the Icarus Verilog directory
+cd iverilog/
+
+# Check out the v10-branch of Icarus Verilog
+git checkout --track -b v10-branch origin/v10-branch
+
+# Update the repository
+git pull
+
+# Make autoconf.sh executable
+chmod 777 autoconf.sh
+
+# Run autoconf.sh
+./autoconf.sh
+
+# Configure Icarus Verilog
+./configure
+
+# Build Icarus Verilog
+make
+
+# Install Icarus Verilog
+sudo make install  
+
+
 # TABLE OF CONTENTS
 ## DAY 1 
 **Introduction to RISCV ISA and GNU Compiler Toolchain**
