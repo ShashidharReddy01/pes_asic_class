@@ -3,6 +3,11 @@
 The objective of VLSI physical design for ASICsis to transform a digital circuit's logical representation into a physical layout that meets various performance, power, area, and manufacturability requirements.
 # ****1. Installation of Virtual Machine and RISC-V GCC compiler****
 
+**Requirements:**
++ OS: Ubuntu 20 
++ Memory: 200 GB
++ RAM: 6 GB
+
 - [VirtualBox](https://www.virtualbox.org/wiki/Downloads) ← Click on the link to head to the downloads page. Download and install the windows hosts version.
     - Open the VirtualBox application and click on “New”
     - Give a name to the VM and choose the folder where your VM files will reside.
@@ -24,7 +29,7 @@ The objective of VLSI physical design for ASICsis to transform a digital circuit
         - For Ubuntu VMs
           -v22.04
 
-# ***Command to download RISC-V toolchain on your ubuntu***
+# ***Commands to download RISC-V toolchain on your ubuntu***
 
 ***Install Git and Vim with automatic "yes" response to prompts***
 
@@ -427,6 +432,152 @@ add a0, a4, zero
 ret
 ```
 ![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/4d109bc3-c119-4835-b32c-1d2a00b6d5e6)
+
+# Introduction to Verilog RTL design and synthesis
+
+## Introduction to iverilog design testbench
+
+RTL Design, which stands for Register Transfer Level design, is a crucial phase in digital circuit design, where the functionality of digital systems is described at a level that specifies how data moves between registers. Let's expand on the key points you've mentioned:
+
+1. **Data Transfer between Registers**: RTL design focuses on defining how data is transferred between registers within a digital circuit. Registers are small memory elements capable of storing binary data. The movement of data between these registers represents the fundamental operations of a digital system.
+
+2. **Hardware Description Language (HDL)**: RTL designs are typically written using Hardware Description Languages like Verilog or VHDL. These languages allow designers to specify the behavior and structure of digital circuits at the register transfer level. HDLs provide a way to describe the desired functionality of the hardware without getting into the specifics of how it will be implemented.
+
+3. **Combinational and Sequential Circuits**: RTL design involves creating descriptions for both combinational and sequential circuits. Combinational circuits are those where the output depends solely on the current input, while sequential circuits have memory elements (like registers) and the output depends on both the current input and the previous state.
+
+4. **Logical and Hardware Operation Modeling**: RTL designs in HDLs enable modeling of logical operations (e.g., AND, OR, NOT) as well as hardware operations (e.g., addition, subtraction) at a level of abstraction that reflects the actual hardware behavior.
+
+5. **Optimization**: RTL design involves optimizing the description to achieve specific goals. These goals might include improving performance, reducing power consumption, or minimizing the area required on a chip. Optimization techniques are applied to the RTL code to make it more efficient.
+
+6. **Synthesizable Code**: One of the most critical aspects of RTL design is that the RTL code must be synthesizable. Synthesis is the process of translating RTL code into a netlist of gates and flip-flops that can be physically implemented on hardware. Synthesis tools, often provided by FPGA or ASIC vendors, take RTL code as input and produce a gate-level representation that can be fabricated into physical hardware.
+
+7. **Hierarchical Design**: In complex digital systems, RTL designs are typically broken down into modules or blocks, each representing a specific function or component of the system. These modules can be designed independently and then integrated to create the complete system.
+
+8. **Testing and Verification**: RTL designs also involve the development of testbenches and verification strategies to ensure that the designed digital circuit behaves correctly under various conditions.
+
+**Simulation**: RTL design is checked for adherence to its design specification using simulation by giving sample inputs. This helps finding and fixing bugs in the RTL design in the early stages of design development. 
+
+**Simulator**: Simulator is the tool used for this process. It looks for changes on input signals to evaluate outputs. No change in output if there is no change in input signals
+
+![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/d45720cb-c8ad-4715-b5e8-09578ac146fa)
+
+# Testbench: 
+***A test bench in Verilog is an essential component of the verification process for digital designs. It serves as a simulation environment where you can apply stimulus to the RTL (Register Transfer Level) design and verify its functionality. Here, let's expand on the key components and functions of a Verilog test bench:***
+
+1. **Stimulus Generation**: The test bench generates input signals that simulate real-world conditions or user interactions with the designed hardware. These input signals are applied to the RTL design to test its behavior. Stimulus generation can include tasks like creating clock signals, generating test vectors, or mimicking user inputs.
+
+2. **Instantiating the Design**: In the test bench, you instantiate the RTL design under test. This means you include the design's module within the test bench code. The test bench communicates with the design module, providing inputs and monitoring outputs.
+
+3. **Output Checking**: The other critical part of a test bench is output checking. After applying stimulus to the design, the test bench monitors the design's output signals. It compares the expected output, which is determined based on the input stimulus and the expected behavior of the design, with the actual output produced during simulation.
+
+4. **Assertion Checks**: To ensure that the design behaves correctly, assertions are often used in the test bench. Assertions are statements in the test bench code that express expected conditions or properties of the design. If an assertion fails during simulation, it indicates a problem with the design.
+
+5. **Timing Simulation**: The test bench allows for timing simulation, where you can evaluate how the design behaves in terms of delays, setup times, and hold times. This is crucial for ensuring that the design meets its timing requirements.
+
+6. **Functional Coverage**: Test benches can include functional coverage checks to ensure that various aspects of the design's functionality have been thoroughly tested. Coverage metrics track which parts of the design have been exercised during simulation.
+
+7. **Test Cases**: In a comprehensive verification process, multiple test cases are often created within the test bench. Each test case represents a specific scenario or condition that the design must handle correctly. These test cases collectively ensure thorough testing of the design.
+
+8. **Simulation Results Comparison**: After simulation, the test bench compares the actual simulation results with the expected results. If there are discrepancies, it indicates potential issues in the RTL design.
+
+9. **Debugging and Analysis**: When discrepancies or errors are detected, the test bench provides valuable information for debugging. Designers can analyze the simulation waveforms and debug their RTL code accordingly.
+
+10. **Regression Testing**: As the project progresses and the design evolves, it's common to perform regression testing using the test bench. This ensures that changes or updates to the design do not introduce new issues and that existing functionality remains intact.
+
+In summary, a Verilog test bench is a critical tool for verifying the correctness of an RTL design. It generates input stimuli, monitors output responses, checks assertions, performs timing analysis, and helps ensure that the design meets its functional and timing requirements. By thoroughly testing the design with various test cases, designers can have confidence in its reliability and correctness before moving to the synthesis and implementation stages.
+
+![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/a220c299-a94c-4fce-9f0f-ed3e5d1131f9)
+
+![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/a7e494b5-1cc7-4367-97cf-45614fa313e1)
+
+## **Introduction to yosys synthesizer**
+
+**synthesis**: is a crucial step in the design process for creating digital integrated circuits. It involves transforming a high-level RTL (Register Transfer Level) design, which describes how data moves between registers and the desired functionality, into a gate-level netlist that represents the physical implementation of the design using specific logic gates. Here's an expanded explanation of the synthesis process:
+
+1. **Converting RTL into Logic Gates**: The first step in synthesis is to convert the RTL description, written in a hardware description language like Verilog or VHDL, into a netlist consisting of basic logic gates (e.g., AND, OR, NOT). This process is sometimes referred to as "RTL synthesis." The synthesizer tool analyzes the RTL code and generates an intermediate representation in terms of logic gates.
+
+2. **Technology Mapping**: After obtaining a netlist with basic logic gates, the synthesizer maps these gates to specific technology-dependent gates available in the target technology library. Different semiconductor technologies (e.g., CMOS, FPGA) have their own libraries of standard cells or configurable logic blocks. The synthesizer selects the appropriate gates from this library to match the desired functionality while considering factors like area, power consumption, and speed.
+
+3. **Optimization**: The next critical phase of synthesis is optimization. The synthesizer applies various algorithms and techniques to optimize the mapped netlist. Optimization aims to improve the design in terms of performance, area utilization, and power efficiency while adhering to constraints set by the designer. Common optimization techniques include logic minimization, retiming, and resource sharing.
+
+4. **Constraint Preservation**: Throughout the synthesis process, the synthesizer must ensure that the constraints set by the designer are preserved. These constraints may include timing requirements (e.g., clock frequency, setup and hold times), power consumption limits, or area constraints. The synthesizer makes optimization decisions while respecting these constraints.
+
+5. **Timing Analysis**: Timing analysis is a crucial aspect of synthesis. It evaluates whether the design meets its timing requirements, such as setup and hold times for flip-flops and the maximum clock frequency. If the design doesn't meet these requirements, the synthesizer may need to make adjustments or provide recommendations for meeting them.
+
+6. **Area and Power Analysis**: Synthesis tools also provide estimates of the chip's area utilization and power consumption based on the synthesized netlist. Designers can use this information to assess whether the design meets their area and power targets.
+
+7. **Gate-Level Simulation**: Before proceeding to physical implementation, gate-level simulation is often performed to validate that the synthesized design behaves as expected and meets functional requirements.
+
+8. **Documentation and Reporting**: Synthesis tools generate reports and documentation that include information about the synthesized design, including gate-level representations, critical paths, timing analysis results, and resource utilization.
+
+Synthesis is a pivotal step in the design flow for creating digital chips. It transforms an abstract RTL design into a gate-level netlist that can be physically implemented. During this process, the synthesizer selects technology-dependent gates, optimizes the design for performance and resource utilization, ensures constraint compliance, and provides essential analysis and documentation to guide the subsequent stages of the design process. The choice of synthesis tool and the expertise of the designer significantly influence the quality and efficiency of the final chip implementation.
+
+![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/c0cbcee9-0794-4efa-8dc3-62fd4cf74ec6)
+
+***Below are the commands to perform above synthesis.***
+
++ RTL Design - read_verilog
++ .lib - read_liberty
++ netlist file- write_verilog
+
+- .lib: It is a collection of logical modules like, And, Or, Not etc...It has different flvors of same gate like 2 input AND gate, 3 input AND gate etc... with different performace speed.
+
+
+![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/06308534-18d0-4c24-b793-2c0db59036b9)
+
+**Verification of Synthesized design**: In order to make sure that there are no errors in the netlist, we'll have to verify the synthesized circuit. The netlist verification flow can be seen in the below image:
+
+![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/ce15fea5-9836-404e-b9be-fa1a086bd1ca)
+
+**Need for different flavours of gate**: In order to make a faster circuit, the clock frequency should be high. For that the time period of the clock should be as low as possible. However, in a sequential circuit, clock period depends on three factors so that data is not lost or to be glitch free.
+
+![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/def5a0ec-f884-417d-9d24-b3e2d622c827)
+
++ Tclk > Tcq_a + Tcombi + Tsetup_b
++ Fclk = 1 / Tclk
+
+**Why we need slower cells**:
+To ensure there is no HOLD issues at flipflop B we need the cells to work at a slower rate.
+Hence we need cells that work fast to meet the required performance and we also need cells that work slow to meet HOLD.
+
+**Faster Cells vs Slower Cells**: 
+Load in digital circuit is of **Capacitence**. Faster the charging or dicharging of capacitance, lesser is the celll delay. However, for a quick charge/ discharge of capacitor, we need transistors capable of sourcing more current i.e, we need WIDE TRANSISTORS. 
+
+Wider transistors have lesser delay but consume more area and power. Narrow transistors are other way around. Faster cells come with a cost of area and power.
+
+**Selection of the Cells**: We'll need to guide the Synthesizer to choose the flavour of cells that is optimum for implementation of logic circuit. Keeping in view of previous observations of faster vs slower cells,to avoid hold time violations, larger circuits, sluggish circuits, we offer guidance to synthesizer in the form of **Constraints**.
+
+![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/986d04c5-73de-483a-9c7c-cb78d9f55f42)
+
+### Labs on Yosys introduction
+
+Invoking Yosys:
+`yosys`
+![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/48ae79a9-ac5d-476e-8348-9533a78b3e3d)
+
+Snippet below illustrates reading .lib, design and choosing the module to synthesize:
+![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/3e0de64b-28a8-4e5b-8723-253d2b776dfb)
+![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/75072a0f-9aaf-4022-8832-cedc3b709bc6)
+![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/8b58f250-15bf-4959-98bb-05875965729b)
+
+`gvim good_mux.v`
++ `to run this file download sudo apt install vim-gtk3`
+
+![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/43ac037a-dd95-4d92-9b39-4af13967102d)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
