@@ -565,6 +565,71 @@ Snippet below illustrates reading .lib, design and choosing the module to synthe
 
 ![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/43ac037a-dd95-4d92-9b39-4af13967102d)
 
+- To synthesize use command `synth -top good_mux`
+
+![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/88939bb8-32e3-431b-b268-36735af13927)
+
+![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/d46fbc9c-c2d5-4037-9b46-f1d2f6df33fc)
+
+`abc -liberty sky130_fd_sc_hd__tt_025C_1v80.lib`
+
+**abc:** ABC is a tool within Yosys used for technology mapping and optimization. It's often used in the synthesis flow to map a high-level RTL description to a lower-level gate-level representation.
+
+**liberty** This flag indicates that you are providing a Liberty library file as input. A Liberty library file is a file that describes the timing, power, and other characteristics of the cells in a digital standard cell library. These libraries are essential for synthesis tools to perform accurate timing analysis and optimization.
+
+**sky130_fd_sc_hd__tt_025C_1v80.lib:** This is the name of the Liberty library file you are providing to Yosys. The name appears to follow a specific naming convention, indicating it's likely part of the SkyWater 130nm process technology, which is a popular open-source process technology for ASIC (Application-Specific Integrated Circuit) design.
+
+**In summary**, The command is using Yosys with the ABC tool to perform synthesis and optimization operations on a design, and it's using a specific Liberty library file tailored for the SkyWater 130nm process technology. This is a typical step in the process of converting a high-level RTL design into a gate-level representation suitable for further steps in the ASIC design flow, such as place and route.
+
+![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/c186e404-bbb7-49a9-8df1-07c43fa90f22)
+
+![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/5f6c0770-3c2c-4e88-b12b-c13ad909adcf)
+
++ From the above picture we can infer that the MUX we have used has
+  - 3 Input Signals
+  - 1 Output Signal
+  - 0 Internal Signal
+  - Cells used
+    - mux2
+  
+   
+Command `show` gives us the graphical version of the logics we have used as shown in the below picture
+
+![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/7a52fcc9-e68a-4642-b7dc-bfd08232035e)
+
+**Netlist code**:
+Command to load netlist is  `write_verilog good_mux_netlist.v` and to open it use the command `!gvim good_mux_netlist.v`
+
+![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/36b660f1-b629-492b-85d2-de63735efbba)
+
+**Simplified netlist code**: This code consisits of additional switch. To further simplify, we use below command
+
+![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/2cad4a95-5bee-4086-b736-93e2a2e7d8dc)
+
+It has created:
+ - instantiation of mux2
+ - name to instantiation
+ - interal nets
+
+
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
 
 
 
