@@ -1034,7 +1034,7 @@ The term **flop coding style** generally refers to different ways of describing 
 
 ![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/9db3e622-8acd-43df-9f5d-9ffca64ff59e)
 
-2. **D Flip Flop with Synchronous Reset Simulation and Synthesis**
+3. **D Flip Flop with Synchronous Reset Simulation and Synthesis**
 
 `cd vlsi/sky130RTLDesignAndSynthesisWorkshop/verilog_files`
 
