@@ -2,11 +2,12 @@
 # VLSI Physical Design for ASICs
 The objective of VLSI physical design for ASICsis to transform a digital circuit's logical representation into a physical layout that meets various performance, power, area, and manufacturability requirements.
 - [Installation of Virtual Machine and RISC-V GCC compiler](#Installation-of-Virtual-Machine-and-RISC-V-GCC-compiler)
-- [Day-0-Installation](#day-0-Installation)
+- [Commands to download RISC-V toolchain on your ubuntu](#Commands-to-download-RISC-V-toolchain-on-your-ubuntu)
+- [WEEK 1 DAY 1](#WEEK-1-DAY-1)
+- [WEEK 1 DAY 2](#WEEK-1-DAY-2)
+- [WEEK 2 DAY 1](#WEEK-2-DAY-1)
 
-## Installation of Virtual Machine and RISC-V GCC compiler
-
-# ***Installation of Virtual Machine and RISC-V GCC compiler***
+# Installation of Virtual Machine and RISC-V GCC compiler
 
 **Requirements:**
 + OS: Ubuntu 20 
@@ -34,7 +35,7 @@ The objective of VLSI physical design for ASICsis to transform a digital circuit
         - For Ubuntu VMs
           -v22.04
 
-# ***Commands to download RISC-V toolchain on your ubuntu***
+# Commands to download RISC-V toolchain on your ubuntu
 
 ***Install Git and Vim with automatic "yes" response to prompts***
 
@@ -207,13 +208,12 @@ source ~/.bashrc`
 
 
 
-# TABLE OF CONTENTS
-## DAY 1 
+## WEEK 1 DAY 1 
 **Introduction to RISCV ISA and GNU Compiler Toolchain**
 + Introduction to Basic Keywords
 + Labwork for RISCV Toolchain
 + Integer Number Representation  
-## DAY 2 
+## WEEK 2 DAY 2 
 **Introduction to ABI and Basic Verification Flow**
 + Application Binary Interface
 + Labwork using ABI Function Calls
@@ -437,6 +437,8 @@ add a0, a4, zero
 ret
 ```
 ![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/4d109bc3-c119-4835-b32c-1d2a00b6d5e6)
+
+# WEEK 2 DAY 1
 
 # Introduction to Verilog RTL design and synthesis
 
