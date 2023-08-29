@@ -1,8 +1,8 @@
 
 # VLSI Physical Design for ASICs
 The objective of VLSI physical design for ASICsis to transform a digital circuit's logical representation into a physical layout that meets various performance, power, area, and manufacturability requirements.
-+ [Installation of Virtual Machine and RISC-V GCC compiler]()
-+ [[Commands to download RISC-V toolchain on your ubuntu](Commands to download RISC-V toolchain on your ubuntu)]
++ [[Installation of Virtual Machine and RISC-V GCC compiler](url)]
++ [[Commands to download RISC-V toolchain on your ubuntu](url)]
 
 ## Installation of Virtual Machine and RISC-V GCC compiler
 
