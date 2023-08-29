@@ -519,7 +519,7 @@ ret
 
 - [Introduction to iverilog design testbench](#Introduction-to-iverilog-design-testbench)
 - [Simulation](#Simulation)
-- [Testbench](#Testbench:)
+- [Testbench](#Testbench)
 
 ## Introduction to iverilog design testbench
 
@@ -547,7 +547,7 @@ RTL Design, which stands for Register Transfer Level design, is a crucial phase 
 
 ![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/d45720cb-c8ad-4715-b5e8-09578ac146fa)
 
-# Testbench: 
+# Testbench
 ***A test bench in Verilog is an essential component of the verification process for digital designs. It serves as a simulation environment where you can apply stimulus to the RTL (Register Transfer Level) design and verify its functionality. Here, let's expand on the key components and functions of a Verilog test bench:***
 
 1. **Stimulus Generation**: The test bench generates input signals that simulate real-world conditions or user interactions with the designed hardware. These input signals are applied to the RTL design to test its behavior. Stimulus generation can include tasks like creating clock signals, generating test vectors, or mimicking user inputs.
@@ -583,13 +583,13 @@ In summary, a Verilog test bench is a critical tool for verifying the correctnes
 	
 ## **Introduction to yosys synthesizer**
 
-- [Synthesis](#Synthesis:)
-- [Verification of Synthesized design:](#Verification-of-Synthesized-design:)
+- [Synthesis](#Synthesis)
+- [Verification of Synthesized design](#Verification-of-Synthesized-design)
 - [Slower Cells](#Slower-Cells)
 - [Labs on Yosys introduction](#Labs-on-Yosys-introduction)
 - [Netlist code](#Netlist-code)
 
-## Synthesis: 
+## Synthesis
 It is a crucial step in the design process for creating digital integrated circuits. It involves transforming a high-level RTL (Register Transfer Level) design, which describes how data moves between registers and the desired functionality, into a gate-level netlist that represents the physical implementation of the design using specific logic gates. Here's an expanded explanation of the synthesis process:
 
 1. **Converting RTL into Logic Gates**: The first step in synthesis is to convert the RTL description, written in a hardware description language like Verilog or VHDL, into a netlist consisting of basic logic gates (e.g., AND, OR, NOT). This process is sometimes referred to as "RTL synthesis." The synthesizer tool analyzes the RTL code and generates an intermediate representation in terms of logic gates.
@@ -623,7 +623,7 @@ Synthesis is a pivotal step in the design flow for creating digital chips. It tr
 
 ![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/06308534-18d0-4c24-b793-2c0db59036b9)
 
-## Verification of Synthesized design: 
+## Verification of Synthesized design
 In order to make sure that there are no errors in the netlist, we'll have to verify the synthesized circuit. The netlist verification flow can be seen in the below image:
 
 ![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/ce15fea5-9836-404e-b9be-fa1a086bd1ca)
