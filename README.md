@@ -213,10 +213,7 @@ source ~/.bashrc`
 + Introduction to Basic Keywords
 + Labwork for RISCV Toolchain
 + Integer Number Representation  
-## WEEK 2 DAY 2 
-**Introduction to ABI and Basic Verification Flow**
-+ Application Binary Interface
-+ Labwork using ABI Function Calls
+
 # Introduction
 ![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/a9f04dfd-9ff4-48b4-b6f2-47f8845763ad)
 **Basic Definition**
@@ -331,6 +328,11 @@ int main(){
 }
 ```
 ![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/f3bbdfcd-1a5b-40e9-a004-77773f87fcef)
+
+## WEEK 2 DAY 2 
+**Introduction to ABI and Basic Verification Flow**
++ Application Binary Interface
++ Labwork using ABI Function Calls
 
 # Application Binary Interface
 ## Introduction to ABI
