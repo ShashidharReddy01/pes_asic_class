@@ -582,13 +582,13 @@ In summary, a Verilog test bench is a critical tool for verifying the correctnes
 <summary>Introduction to yosys synthesizer</summary>
 ## **Introduction to yosys synthesizer**
 
-- [Synthesis](#synthesis:)
+- [Synthesis](#Synthesis:)
 - [Verification of Synthesized design:](#Verification-of-Synthesized-design:)
 - [Slower Cells](#Slower-Cells)
 - [Labs on Yosys introduction](#Labs-on-Yosys-introduction)
-- [Netlist code](#Netlist code:)
+- [Netlist code](#Netlist-code)
 
-## synthesis: is a crucial step in the design process for creating digital integrated circuits. It involves transforming a high-level RTL (Register Transfer Level) design, which describes how data moves between registers and the desired functionality, into a gate-level netlist that represents the physical implementation of the design using specific logic gates. Here's an expanded explanation of the synthesis process:
+## Synthesis: is a crucial step in the design process for creating digital integrated circuits. It involves transforming a high-level RTL (Register Transfer Level) design, which describes how data moves between registers and the desired functionality, into a gate-level netlist that represents the physical implementation of the design using specific logic gates. Here's an expanded explanation of the synthesis process:
 
 1. **Converting RTL into Logic Gates**: The first step in synthesis is to convert the RTL description, written in a hardware description language like Verilog or VHDL, into a netlist consisting of basic logic gates (e.g., AND, OR, NOT). This process is sometimes referred to as "RTL synthesis." The synthesizer tool analyzes the RTL code and generates an intermediate representation in terms of logic gates.
 
@@ -693,7 +693,7 @@ Command `show` gives us the graphical version of the logics we have used as show
 
 ![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/7a52fcc9-e68a-4642-b7dc-bfd08232035e)
 
-## Netlist code:
+## Netlist code
 Command to load netlist is  `write_verilog good_mux_netlist.v` and to open it use the command `!gvim good_mux_netlist.v`
 
 ![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/36b660f1-b629-492b-85d2-de63735efbba)
