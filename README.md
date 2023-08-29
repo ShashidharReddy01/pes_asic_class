@@ -7,6 +7,7 @@ The objective of VLSI physical design for ASICsis to transform a digital circuit
 - [WEEK 1 DAY 2](#WEEK-1-DAY-2)
 - [WEEK 2 DAY 1](#WEEK-2-DAY-1)
 - [WEEK 2 DAY 2](#WEEK-2-DAY-2)
+- [WEEK 2 DAY 2](#WEEK-2-DAY-3)
 
 # Installation of Virtual Machine and RISC-V GCC compiler
 <details>
@@ -1120,6 +1121,50 @@ The term **flop coding style** generally refers to different ways of describing 
 ![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/16459fa0-fa66-472c-9532-31a76cfb952e)
 
 </details>
+
+## WEEK 2 DAY 3
+
+<details>
+<summary>Introduction to Optimisations</summary>
+	
+## Introduction to Optimisations
+</details>
+
+<details>
+<summary>Combinational Logic Optimisations</summary>
+
+## Combinational Logic Optimisations
+
++ [opt check](#opt-check)
++ [opt check1](#opt-check1)
++ [opt check2](#opt-check2)
++ [opt check3](#opt-check3)
++ [multiple module opt](#multiple-module-opt)
+
+</details>
+
+<details>
+<summary>Sequential Logic Optimisations</summary>
+
+## Sequential Logic Optimisations
+
++ [dff const1](#dff-const1)
++ [dff const2](#dff-const2)
++ [dff const3](#dff-const3)
++ [dff const4](#dff-const4)
++ [dff const5](#dff-const5)
+
+</details>
+
+<details>
+<summary>Sequential Optimisations for Unused Outputs</summary>
+
+## Sequential Optimisations for Unused Outputs
+
++ [counter opt1](#counter-opt1)
++ [counter opt2](#counter-opt2)
+</details>
+
 
 
 
