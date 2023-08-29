@@ -8,34 +8,66 @@ The objective of VLSI physical design for ASICsis to transform a digital circuit
 - [WEEK 2 DAY 1](#WEEK-2-DAY-1)
 
 # Installation of Virtual Machine and RISC-V GCC compiler
+<details>
 
-**Requirements:**
-+ OS: Ubuntu 20 
+<summary>Requirements:</summary>
+
++ OS: Ubuntu 20
+  
 + Memory: 200 GB
+  
 + RAM: 6 GB
+  
+</details>
 
-- [VirtualBox](https://www.virtualbox.org/wiki/Downloads) ← Click on the link to head to the downloads page. Download and install the windows hosts version.
+<details>
+<summary>Process of installation</summary>
+	
+- [VirtualBox](https://www.virtualbox.org/wiki/Downloads) ← Click on the link to head to the downloads page. Download and install the windows hosts version
+	
     - Open the VirtualBox application and click on “New”
+    
     - Give a name to the VM and choose the folder where your VM files will reside.
+    
     - For iso file you need to install the iso image from these sites.
+    
         - For Ubuntu: http://ubuntu-releases.mirror.net.in/ubuntu/releases/jammy/ubuntu-22.04.3-desktop-amd64.iso (for Intel and AMD users)
+	
         - Please refer to the ubuntu website for MacOS (M1, M2) users.
-    - Download any one of the two iso file and include it in the iso option.
+	
+    - Download any one of the two iso file and include it in the iso option
+    .
     - For type, choose “Linux” and for version either choose “Ubuntu 22.04 (64-bit)”.
+    
     - Rest is set to default. Please DM either one of us if you’re facing issues at this point.
+    
     - Click on “Next” and for base memory set it to “2048MB” if you have less than 8gb, if you have more, set it to “4096MB”.
+    
     - For the Processors, leave it in “1” unless you have 4+ cores. If you have more than 4 cores, you can set it to “2”.
+    
     - Click on “Next” and in the “Create a virtual hard disk now” and set it to 50GB or 100GB. Please make sure you have enough space for this, but this space that you allocate is dynamic so don’t worry, it will only take up upto 100GB when required.
+    
     - Click on “Next” and “Finish”.
+    
     - If you’re having issues connecting to the network inside the VM, click on the “Devices” option on the menu bar above on the VirtualBox application. In that menu, choose “Network” and enable “Connect Network Adapter”. If it still does not work after enabling, please restart the VM and see if that works.
     
     ---
     
     - For the riscv-gcc compiler, head over to this link https://www.embecosm.com/resources/tool-chain-downloads/ and install the tar.gz file based on your Linux version. **************Make sure you do this on the Virtual Machine!**************
+    
         - For Ubuntu VMs
+	
           -v22.04
+</details>
+
+
+
 
 # Commands to download RISC-V toolchain on your ubuntu
+
+<details>
+	
+<summary>Installation required for WEEK 1</summary>
 
 ***Install Git and Vim with automatic "yes" response to prompts***
 
@@ -154,6 +186,7 @@ Install the RISC-V proxy kernel***
 
 `git checkout --track -b v10-branch origin/v10-branch`
 
+
 ***Update the repository***
 
 `git pull`
@@ -184,6 +217,11 @@ Install the RISC-V proxy kernel***
 
 `echo 'export PATH=$PATH:/opt/riscv/bin' >> ~/.bashrc
 source ~/.bashrc`
+</details>
+
+<details>
+
+<summary>Installation required for WEEK 2</summary>
 
 # updated tools installation for day 3 and day 4
 `git clone https://github.com/YosysHQ/yosys.git `
@@ -206,15 +244,18 @@ source ~/.bashrc`
 
 `sudo apt install gtkwave`
 
+</details>
+
 
 
 ## WEEK 1 DAY 1 
-**Introduction to RISCV ISA and GNU Compiler Toolchain**
-+ Introduction to Basic Keywords
-+ Labwork for RISCV Toolchain
-+ Integer Number Representation  
+<details>
+<summary>Introduction to RISCV ISA and GNU Compiler Toolchain</summary>
+
 
 # Introduction
+
+
 ![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/a9f04dfd-9ff4-48b4-b6f2-47f8845763ad)
 **Basic Definition**
 + An Instruction Set Architecture (ISA) is part of the abstract model of a computer that defines how the CPU is controlled by the software. The ISA acts as an interface between the hardware and the software, specifying both what the processor is capable of doing as well as how it gets done.
@@ -238,27 +279,44 @@ source ~/.bashrc`
 6. **Memory Allocation and Stack Pointer** 
 - Memory allocation refers to the process of assigning and managing memory segments for various data structures, variables, and objects used by a program. It involves allocating memory space from the system's memory pool and releasing it when it is no longer needed to prevent memory leaks.
 - The stack pointer is a register used by a program to keep track of the current position of the program's execution on the call stack.
-
-# Labwork for RISCV toolchain
+</details>
+<details>
+<summary>Labwork for RISCV toolchain</summary>
+	
 # #c program 
+
 Writing C program using Leaf editor
+
 **Writing a c program to find sum of integers from 1 to N**
+
 `leafpad sum1ton.c`
+
 + code
+
   ![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/10a287e5-fc35-4266-81ab-c5fc1d59b62d)
+  
 `gcc leafpad sum1ton.c`
+
 `./a.out`
+
 ![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/d8e8b254-2cb8-4321-ac3d-23723944dd2a)
+
 ## RISCV GCC Compiler and Dissemble
 
 Using the riscv gcc compiler
+
 `riscv64-unknown-elf-gcc -O1 -mabi=lp64 -march=rv64i -o sum1ton.o sum1ton.c`
+
 `spike pk sum1ton.o`
+
 ![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/9cdddf6c-95c7-4a55-a78c-61697f1d0cd7)
 
 For Assembly Code
+
 `riscv64-unknown-elf-objdump -d sumton.o | less`
+
 type /main to go to the main section
+
 `/main`
 
 
@@ -273,13 +331,17 @@ For -OFast optimization
 ![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/4e15a810-46a6-45a7-b883-d19d655dcf3b)
 
 # Spike Simulation and Debug
+
 `spike -d pk sum1ton.c` is used for debugging.
 
 Contents of the register can be viewed as shown in the image below
 
 ![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/64944ba9-08b0-4dbd-a86d-9af8255e28f9)
 
-# Integer Number Representation 
+</details>
+
+<details>
+<summary>Integer Number Representation and Lab</summary>
 
 ## Unsigned Numbers
 - Unsigned numbers, also known as non-negative numbers, are numerical values that represent magnitudes without indicating direction or sign.
@@ -328,6 +390,7 @@ int main(){
 }
 ```
 ![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/f3bbdfcd-1a5b-40e9-a004-77773f87fcef)
+</details>
 
 ## WEEK 1 DAY 2 
 **Introduction to ABI and Basic Verification Flow**
