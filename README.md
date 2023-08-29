@@ -795,7 +795,7 @@ For smaller, less complex designs, **flat synthesis** may be adequate and simple
 
 On terminal use the commands as given below:
 
-`cd vsd/sky130RTLDesignAndSynthesisWorkshop/verilog_files`
+`cd vlsi/sky130RTLDesignAndSynthesisWorkshop/verilog_files`
 
 `gvim multiple_modules.v`
 
@@ -830,11 +830,11 @@ On terminal use the commands as given below:
 
 ![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/b251c0ed-ca0c-4856-91ca-1ad774241847)
 
-+ For **Flattened Synthesis** we use the file multiple_module.v
+For **Flattened Synthesis** we use the file multiple_module.v
 
 On terminal use the commands as given below:
 
-`cd vsd/sky130RTLDesignAndSynthesisWorkshop/verilog_files`
+`cd vlsi/sky130RTLDesignAndSynthesisWorkshop/verilog_files`
 
 `yosys`
 
@@ -859,21 +859,266 @@ On terminal use the commands as given below:
 ![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/c09996e6-759d-4bfe-ae24-338b547df093)
 
 
-
-
-
-
-
-
-
-
-
-
-
-	
 </details>
 <details>
-<summary>IVarious Flop coding and optimizations</summary>
+<summary>Various Flop coding and optimizations</summary>
+
+## Various Flop coding and optimizations
+
+### Why Flops and Flop Coding Style
+
+**Flop** refers to a flip-flop, which is a fundamental building block used to store binary information in a digital circuit. Flip-flops are crucial components in sequential logic circuits and are used to store state information or to synchronize signals. They are often used in various digital systems, including microprocessors, memory elements, and more.
+
+The term **flop coding style** generally refers to different ways of describing and implementing flip-flops in hardware description languages (HDLs) such as VHDL or Verilog. These coding styles can vary based on design practices, target technology, and design requirements. Here are a few common flop coding styles:
+
+1. **Structural Style**:
+   - In structural coding, you describe the flip-flop using low-level logic gates, such as AND, OR, and NOT gates.
+   - This style offers precise control over the flip-flop's behavior and can be useful for specifying custom flip-flops with specific functionality.
+   - It can be less abstract and more detailed compared to other coding styles.
+
+2. **Behavioral Style**:
+   - Behavioral coding focuses on specifying the intended functionality of the flip-flop without getting into the low-level gate-level details.
+   - You describe what the flip-flop should do rather than how it should be implemented.
+   - It's a high-level and more abstract approach to coding flip-flops.
+
+3. **RTL (Register-Transfer Level) Style**:
+   - RTL is a widely used coding style for describing flip-flops.
+   - In RTL, you specify how data flows from one flip-flop to another, capturing the data path and control signals.
+   - RTL coding is closer to the actual hardware behavior but is still abstracted from the gate-level details.
+
+4. **Synthesizable Style**:
+   - When coding for synthesis (the process of translating high-level code into gates), you need to follow a style that can be synthesized into hardware efficiently.
+   - This style adheres to synthesis-friendly constructs and practices to ensure that the HDL code can be transformed into actual flip-flops in the target technology.
+
+5. **Preferred Styles by Synthesis Tools**:
+   - Different synthesis tools might have preferred coding styles or optimizations.
+   - Understanding the capabilities and preferences of your synthesis tool can influence your choice of flop coding style.
+
+## D Flip Flop:
+
+**D Flip-Flop with Asynchronous Set (AS):**
+
+1. **Data (D) Input**: The D input represents the data that you want to store in the flip-flop. The flip-flop changes its output state (Q) based on the value of D when the set condition is met.
+
+2. **Clock (CLK) Input**: The CLK input controls when the flip-flop samples the D input and updates its state. Typically, D flip-flops change state on the rising or falling edge of the clock, depending on the specific design.
+
+3. **Asynchronous Set (S) Input**:
+   - **Set (S)**: When the S signal is asserted (e.g., S = 1), it immediately sets the Q output to 1, irrespective of the clock state. This means that even if the clock is in an inactive state, the flip-flop will set to 1 when S is active.
+
+4. **Asynchronous Behavior**: The asynchronous set (AS) input overrides the clocked behavior of the flip-flop. If S is asserted while the clock is inactive, the output state will change asynchronously, without waiting for a clock edge.
+
+5. **Use Cases**: AS flip-flops are useful when you need to force a specific state in a circuit immediately, regardless of the clock. However, they should be used with caution due to the potential for asynchronous behavior.
+
+`gvim dff_asyncres_syncres.v`
+
+![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/3da1b636-a5b5-43ca-9c06-54d8ae9e241c)
+
+
+**D Flip-Flop with Asynchronous Reset (AR):**
+
+1. **Data (D) Input**: The D input specifies the data that you want to store in the flip-flop. The flip-flop updates its output state (Q) based on the D input when the reset condition is met.
+
+2. **Clock (CLK) Input**: The CLK input determines when the flip-flop samples the D input and updates its state. The flip-flop typically changes state on the rising or falling edge of the clock.
+
+3. **Asynchronous Reset (R) Input**:
+   - **Reset (R)**: When the R signal is asserted (e.g., R = 1), it immediately resets the Q output to 0, regardless of the clock state. This means that even if the clock is inactive, the flip-flop will reset to 0 when R is active.
+
+4. **Asynchronous Behavior**: The asynchronous reset (AR) input overrides the clocked behavior of the flip-flop. If R is asserted while the clock is inactive, the output state will change asynchronously, without waiting for a clock edge.
+
+5. **Use Cases**: AR flip-flops are employed when you need to force a specific state in a circuit immediately, without waiting for the clock. However, similar to AS flip-flops, they should be used carefully to manage potential asynchronous issues.
+
+`gvim dff_async_set.v`
+
+![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/1f436e5c-8fd7-4bba-8049-2d898648e581)
+
+
+**D Flip-Flop with Synchronous Reset (SR):**
+
+1. **Data (D) Input**: The D input specifies the data you want to store in the flip-flop. The flip-flop updates its output state (Q) based on the D input when the reset condition is met, but this is synchronized with the clock.
+
+2. **Clock (CLK) Input**: The CLK input determines when the flip-flop samples the D input and updates its state. Typically, D flip-flops change state on the rising or falling edge of the clock, depending on their specific design.
+
+3. **Synchronous Reset (R) Input**:
+   - **Reset (R)**: When the R signal is asserted (e.g., R = 1) and the clock edge arrives, the flip-flop resets (Q becomes 0) on that clock edge. The reset operation occurs in sync with the clock.
+
+4. **Synchronous Behavior**: In synchronous reset (SR) flip-flops, the reset operation only takes effect at the specified clock edge. This ensures that the flip-flop state changes are synchronized with the clock and avoids glitches.
+
+5. **Use Cases**: SR flip-flops are widely used in synchronous digital designs, particularly when precise timing control is required. They help maintain the integrity of the sequential logic and prevent race conditions while allowing for controlled resets.
+
+`gvim dff_syncres.v`
+
+![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/87ed5a9e-d795-4ae4-a8f6-e737a8306586)
+
+
+**D Flip-Flop with Asynchronous Reset (AR) and Synchronous Reset (SR):**
+
+1. **Data (D) Input**: The D input represents the data that you want to store in the flip-flop. The flip-flop changes its output state (Q) based on the value of D.
+
+2. **Clock (CLK) Input**: The CLK input controls when the flip-flop samples the D input and updates its state. Typically, D flip-flops change state on the rising or falling edge of the clock, depending on their specific implementation.
+
+3. **Asynchronous Reset (AR) Input**:
+   - **Reset (AR)**: When the AR signal is asserted (e.g., AR = 1), it immediately resets the Q output to 0, regardless of the clock state. This asynchronous reset operation occurs independently of the clock, providing an immediate reset capability.
+
+4. **Synchronous Reset (SR) Input**:
+   - **Reset (SR)**: When the SR signal is asserted (e.g., SR = 1) and the clock edge arrives, the flip-flop resets (Q becomes 0) on that clock edge. This synchronous reset operation is synchronized with the clock.
+
+5. **Reset Priority**: In this configuration, if both asynchronous and synchronous resets are asserted simultaneously, the asynchronous reset (AR) usually takes priority, forcing the flip-flop to reset immediately, regardless of the clock edge.
+
+6. **Use Cases**: D flip-flops with both asynchronous and synchronous reset capabilities are versatile and can be used in designs where you need a combination of immediate reset (AR) and controlled, clock-synchronized reset (SR). They provide flexibility in managing reset conditions based on design requirements.
+
+`gvim dff_asyncres_syncres.v`
+
+![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/80fa0b72-a9ea-40cb-b87a-cc53ab3fbac6)
+
+
+### Lab Flop Synthesis and Simulations
+
+1. **D Flip Flop with Asynchronous Reset Simulation and Synthesis**
+
+`cd vlsi/sky130RTLDesignAndSynthesisWorkshop/verilog_files`
+
+`iverilog dff_asyncres.v tb_dff_asyncres.v`
+
+`./a.out`
+
+`gtkwave tb_dff_asyncres.vcd`
+
+`cd vlsi/sky130RTLDesignAndSynthesisWorkshop/verilog_files`
+
+`yosys`
+
+`read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib`
+
+`read_verilog dff_async_set.v`
+
+`synth -top dff_async_set`
+
+`dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib`
+
+`abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib`
+
+`show`
+
+![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/09939086-1be9-48da-a0c4-2c4c497e43e5)
+
+![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/9f562191-3f5b-42cb-bb6a-59e3d2606565)
+
+
+2. **D Flip Flop with Asynchronous Reset Simulation and Synthesis**
+
+`cd vlsi/sky130RTLDesignAndSynthesisWorkshop/verilog_files`
+
+`iverilog dff_syncres.v tb_dff_syncres.v`
+
+`./a.out`
+
+`gtkwave tb_dff_syncres.vcd`
+
+`cd vlsi/sky130RTLDesignAndSynthesisWorkshop/verilog_files`
+
+`yosys`
+
+`read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib`
+
+`read_verilog dff_syncres.v`
+
+`synth -top dff_syncres`
+
+`dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib `
+
+`abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib`
+
+`show`
+
+![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/9e23d04d-b8d4-4bf5-8b47-40c8382b1059)
+
+![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/9db3e622-8acd-43df-9f5d-9ffca64ff59e)
+
+2. **D Flip Flop with Synchronous Reset Simulation and Synthesis**
+
+`cd vlsi/sky130RTLDesignAndSynthesisWorkshop/verilog_files`
+
+`iverilog dff_syncres.v tb_dff_syncres.v`
+
+`./a.out`
+
+`gtkwave tb_dff_syncres.vcd`
+
+`yosys`
+
+`read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib`
+
+`read_verilog dff_syncres.v`
+
+`synth -top dff_syncres`
+
+`dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib `
+
+`abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib`
+
+`show`
+
+![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/498994ef-921f-4282-a80d-ef3df03c2469)
+
+![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/bf01b629-6210-401f-91a0-d64d1c55d0a7)
+
+
+### Interesting Optimizations
+
+`gvim mult_2.v`
+
+![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/55b384c8-a29b-4317-9d77-149001e284cc)
+
+`yosys`
+
+`read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib`
+
+`read_verilog mult_2.v`
+
+`synth -top mul2`
+
+![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/36da9ee8-9f64-40e5-a901-c44845def678)
+
+
+`abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib`
+
+`show`
+
+![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/acf0854f-769b-4000-b162-74efd656adbc)
+
+
+`write_verilog -noattr mul2_netlist.v`
+
+`!gvim mul2_netlist.v`
+
+![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/22e1f6d7-12c9-4645-a7b9-31592f735750)
+
+
+`gvim mult_8.v`
+
+![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/1ecc2b7f-b585-4f3e-9946-49678beb3690)
+
+`yosys`
+
+`read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib`
+
+`read_verilog mult_8.v`
+
+`synth -top mult8`
+
+`abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib`
+
+`show`
+
+![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/3acff9f0-0b36-4783-9597-379cf9338461)
+
+
+`write_verilog -noattr mult8_netlist.v`
+
+`!gvim mult8_netlist.v`
+
+![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/16459fa0-fa66-472c-9532-31a76cfb952e)
+
 </details>
 
 
