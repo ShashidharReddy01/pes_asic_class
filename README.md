@@ -6,6 +6,7 @@ The objective of VLSI physical design for ASICsis to transform a digital circuit
 - [WEEK 1 DAY 1](#WEEK-1-DAY-1)
 - [WEEK 1 DAY 2](#WEEK-1-DAY-2)
 - [WEEK 2 DAY 1](#WEEK-2-DAY-1)
+- [WEEK 2 DAY 2](#WEEK-2-DAY-2)
 
 # Installation of Virtual Machine and RISC-V GCC compiler
 <details>
@@ -711,6 +712,171 @@ It has created:
  - name to instantiation
  - interal nets
 </details>
+
+## WEEK 2 DAY 2
+
+<details>
+<summary>Introduction to Timing .libs</summary>
+
+## **Sky130_fd_sc_hd__tt_025C_1v80.lib**
+
+**sky130:** This identifier signifies that the library is tailored for the SkyWater 130nm process technology. Process technology defines the manufacturing details for integrated circuits, such as transistor size and performance attributes.
+
+**fd_sc_hd:** These abbreviations likely denote specific features of the library:
+
+**fd:** It may stand for "Foundation," implying that the library contains essential building blocks for digital IC design.
+
+**sc:** This could signify "Standard Cells," which are predefined logic gates employed in IC design.
+
+**hd:** This might represent "high-density" libraries, often featuring compact cell designs to maximize logic density within ICs.
+
+**tt_025C:** This segment could indicate the library's operational conditions or settings:
+
+**tt:** It could be an abbreviation for "typical temperature," denoting the library's performance under standard conditions.
+
+**025C:** This possibly refers to 25 degrees Celsius, a common temperature used in IC specifications. Understanding how a library performs at different temperatures is crucial for design considerations.
+
+**1v80:** This part likely represents the library's supply voltage:
+
+**1v80:** It indicates a supply voltage of 1.8 volts. This voltage level is frequently used in digital ICs and has a significant impact on a chip's power consumption and performance characteristics.
+</details>
+<details>
+<summary>What does sky130_fd_sc_hd__tt_025C_1v80.lib contain</summary>
+
+Use `gvim ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib` command to view what this library contains/
+	
+![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/fd87a852-1367-4da1-86df-2b0643585548)
+
++ It also shows us Units of Various Parameters
+
+![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/fa34ecb4-eaf4-464d-842b-d581d61921d9)
+
++ The below image shows the power consumption and area comparision.
+
+![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/7ead027e-ce6e-42d0-aab7-2a38c0297d4c)
+
+![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/2f7e21c8-a1c3-4fc1-9de5-bea9e965e61e)
+
+</details>
+<details>
+<summary>Hierarchial vs Flat synthesis</summary>
+	
+## Hierarchial vs Flat synthesis
+
+**Hierarchical and flat synthesis** are two different approaches to designing and synthesizing digital integrated circuits. Each has its advantages and disadvantages, and the choice between them depends on the specific requirements and complexity of the design. Here's an overview of both approaches:
+
+**Flat Synthesis:**
+
+1. **Single-Level Structure:** In flat synthesis, the entire design is represented as a single-level structure. This means that all modules, components, and logic elements are placed in a single design hierarchy.
+
+2. **Simplicity:** Flat synthesis is simpler to implement and understand, especially for smaller designs with few modules. It's a straightforward way to design digital circuits.
+
+3. **Limited Scalability:** Flat synthesis can become unwieldy and difficult to manage as the design size increases. It may not be practical for complex designs with many components.
+
+4. **Limited Reusability:** Reusing components in a flat design can be challenging, as everything is at the same hierarchical level. Changes to one part of the design can have unintended consequences elsewhere.
+
+**Hierarchical Synthesis:**
+
+1. **Multi-Level Structure:** Hierarchical synthesis breaks the design into multiple levels or layers of hierarchy. Each level contains smaller, more manageable sub-modules or blocks.
+
+2. **Scalability:** Hierarchical synthesis is more scalable and better suited for complex designs. It allows for easier organization and management of large and intricate circuits.
+
+3. **Modularity and Reusability:** Hierarchical designs are inherently modular, making it easier to reuse components in different parts of the design or in other projects. This promotes a more structured and efficient design process.
+
+4. **Ease of Debugging and Testing:** Debugging and testing are often more straightforward in hierarchical designs because issues can be localized to specific modules or hierarchy levels.
+
+5. **Improved Collaboration:** Hierarchical designs are well-suited for team collaboration, as different team members can work on separate modules independently, reducing conflicts and integration challenges.
+
+For smaller, less complex designs, **flat synthesis** may be adequate and simpler to implement. However, for larger and more complex designs, **hierarchical synthesis** is generally preferred because it offers better scalability, modularity, reusability, and organization, making it easier to manage and maintain the design throughout its lifecycle.
+
+### Labwork
+
++ For **Hierarchial Synthesis** we use the file module.v
+
+On terminal use the commands as given below:
+
+`cd vsd/sky130RTLDesignAndSynthesisWorkshop/verilog_files`
+
+`gvim multiple_modules.v`
+
+![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/67418513-1a0e-420d-b389-fe6a8eb7e33a)
+
+`yosys`
+
+`read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib`
+
+`read_verilog multiple_modules.v`
+
+`synth -top multiple_modules`
+
+![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/54b7acba-8fbd-4c5a-a6ee-fb0dc5b07821)
+
+![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/6deb9945-6a66-4a2f-a145-0f95d082002e)
+
+**To view the netlist**
+
+`abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib`
+
+`show multiple_modules`
+
+![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/f819e2c1-eb36-440d-90fc-562cdc39de7c)
+
+
+`write_verilog -noattr multiple_modules_hier.v`
+
+`!gvim multiple_modules_hier.v`
+
+![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/d9b92127-f8ed-485b-8f68-60225d5b186a)
+
+![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/b251c0ed-ca0c-4856-91ca-1ad774241847)
+
++ For **Flattened Synthesis** we use the file multiple_module.v
+
+On terminal use the commands as given below:
+
+`cd vsd/sky130RTLDesignAndSynthesisWorkshop/verilog_files`
+
+`yosys`
+
+`read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib`
+
+`read_verilog multiple_modules.v`
+
+`synth -top multiple_modules`
+
+`abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib`
+
+`flatten`
+
+`show`
+
+![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/ab25652b-72bb-4b7d-8259-0a5d931beb95)
+
+`write_verilog -noattr multiple_modules_flat.v`
+
+`!gvim multiple_modules_flat.v`
+
+![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/c09996e6-759d-4bfe-ae24-338b547df093)
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+</details>
+<details>
+<summary>IVarious Flop coding and optimizations</summary>
+</details>
+
+
 
  
  
