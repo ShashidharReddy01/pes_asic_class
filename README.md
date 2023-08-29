@@ -397,6 +397,10 @@ int main(){
 <summary>Application Binary Interface</summary>
 	
 - [Introduction to ABI](#Introduction-to-ABI)
+- [Memmory Allocation for Double Words](#Memmory-Allocation-for-Double-Words)
+- [Load, Add and Store Instructions](#Load-Add-and-Store-Instructions)
+- [32-Registers and their ABI Names](#32--Registers-and-their-ABI-Names)
+- [ABI Names](#ABI-Names)
 
 ## Introduction to ABI
 An Application Binary Interface (ABI) is a set of conventions or rules that govern how functions, data structures, and system calls should be organized and accessed in a binary program or library. It defines the low-level interface between different parts of a program or between a program and the operating system. Here are the key points about an ABI:
