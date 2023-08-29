@@ -580,6 +580,7 @@ In summary, a Verilog test bench is a critical tool for verifying the correctnes
 
 <details>
 <summary>Introduction to yosys synthesizer</summary>
+	
 ## **Introduction to yosys synthesizer**
 
 - [Synthesis](#Synthesis:)
