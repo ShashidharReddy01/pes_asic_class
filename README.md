@@ -393,11 +393,11 @@ int main(){
 </details>
 
 ## WEEK 1 DAY 2 
-**Introduction to ABI and Basic Verification Flow**
-+ Application Binary Interface
-+ Labwork using ABI Function Calls
+<details>
+<summary>Application Binary Interface</summary>
+	
+- [Introduction to ABI](#Introduction-to-ABI]
 
-# Application Binary Interface
 ## Introduction to ABI
 An Application Binary Interface (ABI) is a set of conventions or rules that govern how functions, data structures, and system calls should be organized and accessed in a binary program or library. It defines the low-level interface between different parts of a program or between a program and the operating system. Here are the key points about an ABI:
 
@@ -464,6 +464,8 @@ The choice of the number of registers in a processor's architecture, such as the
 ABI names for registers serve as a standardized way to designate the purpose and usage of specific registers within a software ecosystem. These names play a critical role in maintaining compatibility, optimizing code generation, and facilitating communication between different software components. 
 
 ![WhatsApp Image 2023-08-20 at 17 51 23](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/46f38e30-4c21-458f-84cc-2ee2381b8b13)
+
+</details>
 
 # LabWork using ABI function calls
 
