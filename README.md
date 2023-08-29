@@ -329,7 +329,7 @@ int main(){
 ```
 ![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/f3bbdfcd-1a5b-40e9-a004-77773f87fcef)
 
-## WEEK 2 DAY 2 
+## WEEK 1 DAY 2 
 **Introduction to ABI and Basic Verification Flow**
 + Application Binary Interface
 + Labwork using ABI Function Calls
