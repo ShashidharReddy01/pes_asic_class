@@ -8,6 +8,7 @@ The objective of VLSI physical design for ASICsis to transform a digital circuit
 - [WEEK 2 DAY 1](#WEEK-2-DAY-1)
 - [WEEK 2 DAY 2](#WEEK-2-DAY-2)
 - [WEEK 2 DAY 2](#WEEK-2-DAY-3)
+- [WEEK 2 DAY 2](#WEEK-2-DAY-4)
 
 # Installation of Virtual Machine and RISC-V GCC compiler
 <details>
@@ -1440,6 +1441,8 @@ show
 ![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/7dfc45a1-93af-411e-8152-99908d0745df)
 
 </details>
+
+## WEEK 2 DAY 4
 
 
 
