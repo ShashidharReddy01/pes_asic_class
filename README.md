@@ -513,7 +513,7 @@ ret
 ![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/4d109bc3-c119-4835-b32c-1d2a00b6d5e6)
 </details>
 
-# WEEK 2 DAY 1
+## WEEK 2 DAY 1
 <details>
 <summary>Introduction to Verilog RTL design </summary>
 
