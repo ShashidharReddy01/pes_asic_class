@@ -1128,8 +1128,58 @@ The term **flop coding style** generally refers to different ways of describing 
 <summary>Introduction to Optimisations</summary>
 	
 ## Introduction to Optimisations
-</details>
 
+
+### **Combinational Logic Optimization:** 
+It is a branch of computer science and operations research that concentrates on finding the most optimal solution among a finite set of possibilities for problems characterized by discrete variables and lacking any inherent notion of time. In this context, combinational logic refers to logic circuits where output solely depends on current inputs, devoid of any reliance on past states.
+
+Optimizing a combinational logic circuit entails streamlining the logic design to achieve the utmost efficiency in terms of both area and power consumption. Several techniques are employed to accomplish this:
+
+1. **Constant Propagation:**
+   - **Definition:** Constant propagation is an optimization technique used in both compiler design and digital circuit synthesis to enhance efficiency.
+   - **How it works:** It involves identifying instances in the code or circuit where variables or expressions can be replaced with their constant values. This reduces the need for complex calculations and can lead to a smaller and faster circuit.
+   - **Example:** In a digital circuit, if a signal's value is known to be constant (e.g., always '0' or '1'), the circuit can be simplified by removing unnecessary logic gates that would otherwise compute this constant value.
+
+2. **Boolean Logic Optimization (Logic Minimization):**
+   - **Definition:** Boolean logic optimization, also known as logic minimization or Boolean function simplification, aims to simplify Boolean expressions or logic circuits to make them more efficient.
+   - **How it works:** This process involves various techniques like Karnaugh maps, Quine-McCluskey method, and algebraic manipulation to reduce the number of terms, literals, and gates required to implement a given logical function.
+   - **Example:** Suppose you have a complex logic circuit with multiple gates and inputs. By applying logic minimization techniques, you can simplify the circuit to use fewer gates and inputs while still producing the same output. This reduces power consumption and improves circuit speed.
+
+3. **Gate-Level Optimization:**
+   - **Definition:** Gate-level optimization focuses on optimizing the arrangement and selection of logic gates in a circuit to minimize power consumption and area usage.
+   - **How it works:** Techniques like gate merging (combining multiple gates into one), gate sharing (using common gates for multiple functions), and gate substitution (replacing complex gates with simpler equivalents) are used to optimize the gate-level design.
+   - **Example:** If a circuit uses multiple gates to perform a specific function, gate-level optimization might replace these gates with a single gate that can perform the same function, thus reducing the area and power consumption of the circuit.
+
+4. **Timing Optimization:**
+   - **Definition:** Timing optimization is concerned with ensuring that signals in the circuit meet specific timing requirements, such as setup time and hold time.
+   - **How it works:** Techniques like pipelining, clock skew minimization, and retiming are used to adjust the circuit's structure to meet timing constraints while minimizing area and power usage.
+   - **Example:** In high-speed digital circuits, pipelining can be used to break down complex operations into smaller stages, allowing for higher clock frequencies without sacrificing performance.
+
+### **Sequential Logic Optimization:**  
+It is crucial for enhancing the efficiency and functionality of digital circuits containing memory elements such as flip-flops and latches. These optimizations aim to ensure that the circuit meets timing requirements, minimizes power consumption, occupies the least possible area, and maintains correct operation over time.
+
+Here are some key methods for optimizing sequential logic circuits:
+
+1. **Sequential Constant Propagation:**
+   - **Definition:** Sequential constant propagation, also known as constant propagation across sequential elements, is an optimization technique used in digital design.
+   - **How it works:** It identifies and propagates constant values through sequential logic elements like flip-flops and registers. This process replaces variable values with their known constant values at various stages of the circuit, thereby optimizing the design for better performance and resource utilization.
+   - **Benefit:** By replacing variables with constants, sequential constant propagation reduces the complexity of the circuit and can lead to improved performance and reduced resource usage.
+
+2. **State Optimization (State Minimization):**
+   - **Definition:** State optimization, also known as state minimization or state reduction, is an optimization technique applied to finite state machines (FSMs) in digital design.
+   - **How it works:** It reduces the number of states in FSMs while preserving the original functionality. This optimization simplifies the control logic of the circuit and can lead to more efficient designs.
+   - **Benefit:** State optimization helps minimize the control logic complexity, reducing power consumption and improving circuit speed.
+
+3. **Sequential Logic Cloning (Retiming-Based Cloning):**
+   - **Definition:** Sequential logic cloning, also known as retiming-based cloning or register cloning, is a technique used in digital design.
+   - **How it works:** It improves circuit performance by duplicating or cloning existing registers (flip-flops) and introducing additional pipeline stages. This balances critical paths within the circuit, reducing the overall clock period and enhancing timing performance and efficiency.
+   - **Benefit:** Sequential logic cloning optimizes the circuit's timing behavior, making it possible to achieve higher clock frequencies without sacrificing functionality.
+
+4. **Retiming:**
+   - **Definition:** Retiming is an optimization technique used in digital design to improve circuit performance.
+   - **How it works:** Retiming involves repositioning registers (flip-flops) along paths within the circuit to balance timing and reduce critical path delays. It optimizes the timing behavior of the circuit while maintaining its original functionality.
+   - **Benefit:** By strategically moving registers, retiming can reduce the longest path delays in a circuit, allowing it to operate at higher clock frequencies without violating timing constraints.
+</details>
 <details>
 <summary>Combinational Logic Optimisations</summary>
 
@@ -1142,10 +1192,110 @@ The term **flop coding style** generally refers to different ways of describing 
 + [multiple module opt](#multiple-module-opt)
 
 ## opt check
+
+***Commands***
+
+`gvim opt_check.v`
+
+`read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib`
+
+`read_verilog opt_check.v`
+
+`synth -top opt_check`
+
+`opt_clean -purge`
+
+`abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib`
+
+`show`
+
+![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/1203e30f-09bb-4667-8920-03a775f333fb)
+
+
+
 ## opt check1
+
+***Commands***
+`gvim opt_check2.v`
+
+`read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib`
+
+`read_verilog opt_check2.v`
+
+`synth -top opt_check2`
+
+`opt_clean -purge`
+
+`abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib`
+
+`show`
+
+![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/1267b8bd-1c2a-4936-89fb-c9941faef2d1)
+
+
 ## opt check2
+
+***Commands***
+
+`gvim opt_check3.v`
+
+`read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib`
+
+`read_verilog opt_check3.v`
+
+`synth -top opt_check3`
+
+`opt_clean -purge`
+
+`abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib`
+
+`show`
+
+![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/98cef147-6d68-4e97-a636-9519413f4ba0)
+
+
 ## opt check3
+
+***Commands***
+
+`gvim opt_check4.v`
+
+`read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib`
+
+`read_verilog opt_check4.v`
+
+`synth -top opt_check4`
+
+`opt_clean -purge`
+
+`abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib`
+
+`show`
+
+![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/0004d7c6-b598-49e5-9397-4826cd3e1de1)
+
+
 ## multiple module opt
+
+***Commands***
+
+`gvim multiple_module_opt.v`
+
+`read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib`
+
+`read_verilog multiple_module_opt.v`
+
+`synth -top multiple_module_opt`
+
+`flatten`
+
+`opt_clean -purge`
+
+`abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib`
+
+`show`
+
+![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/b959a3d7-8024-4610-bd3c-e8fc7f65b909)
 
 
 </details>
@@ -1162,10 +1312,86 @@ The term **flop coding style** generally refers to different ways of describing 
 + [dff const5](#dff-const5)
 
 ## dff const1
+
+***Commands***
+
+***Simulation:***
+
+```
+gvim dff_const1.v
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog dff_const1.v
+synth -top dff_const1
+dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+show
+```
+
+***Synthesis***
+
+```
+iverilog dff_const1.v tb_dff_const1.v
+/a.out
+gtkwave tb_dff_const1.vcd
+```
+![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/8f40e1e9-c489-4e2c-822b-02146226b8de)
+
+
+
+
 ## dff const2
+
+***Commands***
+
+***Simulation:***
+
+```
+  gvim dff_const2.v
+  read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib  
+  read_verilog dff_const2.v
+  synth -top dff_const2
+  dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+  abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+  show
+```
+
+***Synthesis***
+
+```
+iverilog dff_const2.v tb_dff_const2.v
+./a.out
+gtkwave tb_dff_const2.vcd
+```
+![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/8bee8f95-b1e1-4a9c-a375-5c81dcd38c3b)
+
 ## dff const3
-## dff const4
-## dff const5
+
+***Commands***
+
+***Simulation:***
+
+```
+  gvim dff_const3.v
+  read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib  
+  read_verilog dff_const3.v
+  synth -top dff_const3
+  dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+  abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+  show
+```
+
+***Synthesis***
+
+```
+iverilog dff_const3.v tb_dff_const3.v
+./a.out
+gtkwave tb_dff_const3.vcd
+```
+![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/1fd1c247-d243-496b-bdf9-d3c6094619c5)
+
+![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/332b6de9-5773-4177-816f-6168e3da5e45)
+
+
 
 </details>
 
@@ -1178,7 +1404,41 @@ The term **flop coding style** generally refers to different ways of describing 
 + [counter opt2](#counter-opt2)
 
 ## counter opt1
+
+***Commands***
+
+***Simulation:***
+
+```
+gvim counter_opt.v
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog counter_opt.v
+synth -top counter_opt
+dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+show
+```
+![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/c2109768-ac9a-48ed-ba34-6942e46f41db)
+
+
 ## counter opt2
+
+***Commands***
+
+***Simulation:***
+
+```
+gvim counter_opt2.v
+image
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog counter_opt2.v
+synth -top counter_opt2
+dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+show
+```
+![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/7dfc45a1-93af-411e-8152-99908d0745df)
+
 </details>
 
 
