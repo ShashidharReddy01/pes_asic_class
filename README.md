@@ -514,6 +514,7 @@ ret
 </details>
 
 ## WEEK 2 DAY 1
+
 <details>
 <summary>Introduction to Verilog RTL design </summary>
 
