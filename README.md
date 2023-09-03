@@ -1444,6 +1444,260 @@ show
 
 ## WEEK 2 DAY 4
 
+<details>
+
+<summary>GLS Synthesis-Simulation Mismatch and Blocking Non-blocking Statements</summary>
+
+## GLS Synthesis-Simulation Mismatch and Blocking Non-blocking Statements
+
+### **Gate-level simulation** is a crucial step in the digital design and verification process, particularly when designing complex digital systems. Here's a more detailed explanation of gate-level simulation and its importance:
+
+1. **Overview**:
+   Gate-level simulation involves simulating a digital circuit using the actual logic gates and flip-flops that are part of the hardware implementation. These gates and flip-flops represent the lowest level of abstraction in digital design, and simulating at this level helps ensure the design's logical correctness and timing constraints are met.
+
+2. **Post-Synthesis Stage**:
+   Gate-level simulation typically occurs after the logic synthesis stage. During logic synthesis, a high-level description of the digital design (usually written in a hardware description language like VHDL or Verilog) is transformed into a netlist of gates and flip-flops. This netlist represents the actual hardware components that will be used in the physical implementation of the design.
+
+3. **Logical Correctness Verification**:
+   Gate-level simulation is primarily used to verify the logical correctness of the design. It ensures that the circuit behaves as expected in terms of logic operations, such as AND, OR, NOT, and various flip-flop configurations. By applying test vectors (input values) to the gates and observing the outputs, engineers can confirm that the design performs the intended logic functions accurately.
+
+4. **Timing Verification**:
+   Timing verification is another critical aspect of gate-level simulation. It helps ensure that the design meets the required timing constraints, such as setup time, hold time, clock-to-q delays, and maximum clock frequency. Simulating at the gate level allows engineers to assess whether signals propagate through the circuit within the specified time limits and whether clock domains are properly synchronized.
+
+5. **Identifying Issues**:
+   Gate-level simulation can uncover various issues that might not be apparent at higher levels of abstraction. These issues may include glitches, hazards, race conditions, and other timing-related problems that can affect the design's reliability and performance.
+
+6. **Debugging and Optimization**:
+   Gate-level simulation is also a valuable tool for debugging and optimization. Engineers can trace signal paths through the gates, identify problematic areas, and make necessary adjustments to improve the design's performance and reliability.
+
+7. **Testbench Development**:
+   To conduct gate-level simulation, engineers create testbenches, which are sets of test vectors and stimulus that are applied to the circuit inputs. These testbenches are essential for verifying the design's behavior under different conditions and edge cases.
+
+8. **Simulation Tools**:
+   Various simulation tools, like Cadence's ModelSim, Synopsys's VCS, or open-source alternatives like Icarus Verilog, are commonly used for gate-level simulation. These tools provide a means to set up and execute simulations efficiently.
+
+![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/34e9efa4-381c-4b69-bb08-31c8f80386d8)
+
+### Synthesis Simulation Mismatch
+
+A **synthesis-simulation mismatch** is a significant concern in digital design and can lead to unexpected issues in the final hardware implementation. Here's an expanded explanation of the concept and its implications:
+
+1. **Timing Issues**:
+   Timing is one of the primary factors that can lead to a synthesis-simulation mismatch. During simulation, the tools often assume ideal conditions, such as zero delay for logic gates and perfect signal propagation. In contrast, the synthesis process takes into account the physical characteristics of the target technology, including gate delays, interconnect delays, and clock distribution network effects. Timing problems can result from inaccuracies in modeling these delays during simulation. For example, simulation might indicate that a design meets its timing requirements, but synthesis could reveal that it does not, leading to a mismatch.
+
+2. **Optimization Conflicts**:
+   Synthesis tools aim to optimize the logic to reduce area and power consumption while meeting the specified timing constraints. These optimizations can sometimes conflict with the original intent of the design, leading to behavioral differences. For instance, certain optimizations might cause logic to be combined or rearranged in a way that alters the critical path or signal flow, resulting in a mismatch between simulation and synthesis results.
+
+3. **Differences in Modeling**:
+   Simulation and synthesis tools may use slightly different models or libraries for the same logical components (e.g., logic gates, flip-flops). These differences can lead to variances in how certain operations are handled. For instance, a simulation tool might use a behavioral model of a complex arithmetic operation, while synthesis might replace it with a more efficient but less accurate hardware implementation. This can cause a mismatch in the way the operation behaves.
+
+4. **Tool-Specific Issues**:
+   Different synthesis and simulation tools may have their algorithms, heuristics, and methods for handling various design elements. These tool-specific idiosyncrasies can contribute to mismatches. Engineers must ensure that the tools they use for synthesis and simulation are compatible and produce consistent results.
+
+5. **Design Verification Challenges**:
+   A synthesis-simulation mismatch is a critical concern because it undermines the trust in the verification process. If the behavior of the circuit during simulation doesn't accurately represent the behavior of the synthesized hardware, it becomes challenging to have confidence that the design will work correctly in the final chip.
+
+6. **Debugging and Iteration**:
+   Identifying and resolving a synthesis-simulation mismatch can be a time-consuming and challenging task. It often involves a process of debugging, modifying the design, and iteratively re-running synthesis and simulation until the desired behavior is achieved and the mismatch is eliminated.
+
+7. **Impact on Project Timeline and Cost**:
+   Dealing with a synthesis-simulation mismatch can lead to project delays and increased costs. Detecting and correcting discrepancies late in the design process or after fabrication can be particularly costly.
+
+### Blocking Statements
+
+**Blocking statements** are a fundamental concept in hardware description languages like Verilog and VHDL. They play a crucial role in defining the sequential behavior of digital circuits. Here's an explanation of what blocking statements are and how they work:
+
+1. **Sequential Execution**:
+   In digital design, it's common to describe circuits that consist of various components, such as flip-flops, logic gates, and wires, which interact with each other sequentially. Blocking statements are used to model this sequential behavior. When you use blocking statements in your code, they are executed in the order they appear, one after the other, in a sequential fashion.
+
+2. **Signal Assignments**:
+   One of the primary uses of blocking statements is for signal assignments. When you use a blocking assignment (`=`) to assign a value to a signal, it means that the signal will be updated immediately within the current simulation time step. This means that the assigned value takes effect right away, and any subsequent statements in the same block will see the updated value of the signal.
+
+3. **Example**:
+   Here's a simple Verilog example to illustrate blocking assignments:
+   
+   ```verilog
+   module MyModule(input A, input B, output Z);
+     reg X, Y;
+     
+     always @(A, B) begin
+       X = A & B; // Blocking assignment
+       Y = X | A; // Blocking assignment
+       Z = Y ^ B; // Blocking assignment
+     end
+   endmodule
+   ```
+   
+   In this example, the statements inside the `always` block are executed sequentially. Each blocking assignment updates the value of a signal immediately, and subsequent assignments can use the updated values.
+
+4. **Sequential Logic**:
+   Blocking assignments are crucial when modeling sequential logic elements like flip-flops and registers. In such cases, a blocking assignment is often used to update the flip-flop's output based on its inputs. This ensures that the flip-flop captures the input value and updates its output within the same time step.
+
+5. **Simulating Time Steps**:
+   In simulation, time is typically divided into discrete steps. Blocking assignments update signal values within the current simulation time step. This allows you to model how signals evolve over time as a result of sequential logic operations.
+
+6. **Sensitivity List**:
+   The `always` block in the example includes a sensitivity list `(A, B)`. This means that the block will execute whenever signals `A` or `B` change value. The sequential execution of blocking assignments within this block is triggered by changes in these signals.
+
+### Non-Blocking Statements
+
+**Non-blocking statements** are another essential concept in hardware description languages like Verilog and VHDL. They are used to model concurrent signal updates and are particularly useful for describing behavior in synchronous digital circuits. Here's an explanation of non-blocking statements and how they work:
+
+1. **Concurrent Execution**:
+   Non-blocking statements are used to model concurrent behavior within a specific block of code. Unlike blocking statements, which execute sequentially, non-blocking assignments (`<=`) all happen simultaneously within the same time step.
+
+2. **Signal Assignments**:
+   In the context of non-blocking assignments, when you use a non-blocking assignment (`<=`) to assign a value to a signal, it means that the value is scheduled to be updated at the end of the current time step. This is a non-blocking operation because it does not immediately affect the signal's value within the current time step. Instead, it sets up the value to be updated in the next time step.
+
+3. **Example**:
+   Let's modify the previous Verilog example to use non-blocking assignments:
+   
+   ```verilog
+   module MyModule(input A, input B, output Z);
+     reg X, Y;
+     
+     always @(A, B) begin
+       X <= A & B; // Non-blocking assignment
+       Y <= X | A; // Non-blocking assignment
+       Z <= Y ^ B; // Non-blocking assignment
+     end
+   endmodule
+   ```
+   
+   In this example, the non-blocking assignments (`<=`) indicate that the assigned values are scheduled for update at the end of the current time step. This means that all assignments occur concurrently, and there's no immediate effect on signal values within the same time step.
+
+4. **Simulating Time Steps**:
+   Similar to blocking assignments, non-blocking assignments are also used within the context of discrete simulation time steps. However, non-blocking assignments are scheduled to update signals at the end of the current time step, while blocking assignments update signals immediately within the current time step.
+
+5. **Use in Synchronous Logic**:
+   Non-blocking assignments are commonly used when modeling synchronous logic elements like flip-flops and registers. In synchronous circuits, it's essential to ensure that inputs are captured and updates occur simultaneously at the clock edge, which is where non-blocking assignments are particularly useful.
+
+6. **Predictable Behavior**:
+   Non-blocking assignments help ensure predictable behavior in synchronous circuits, as they model the concept of "register-to-register" delays, where changes to input signals at the clock edge are reflected in the output signals only after the next clock edge.
+
+### Caveats with Blocking Statements
+
+1. **Blocking statements** in hardware description languages like Verilog have their uses, but there are several important caveats and considerations to be aware of when working with them:
+
+2.**Procedural Execution:** Blocking statements are executed sequentially within a procedural block (e.g., an always block). The order of execution matters, and if it's not well understood, it can lead to unexpected behavior in the design.
+
+3. **Lack of Parallelism:** Blocking statements model sequential behavior, whereas hardware is inherently parallel. Using blocking statements to model complex concurrent logic may result in incorrect simulations that don't capture the true parallel nature of hardware.
+
+4. **Race Conditions:** When multiple blocking assignments operate on the same signal within the same procedural block, race conditions can occur. The outcome depends on the order of execution, potentially leading to inconsistent or unpredictable behavior.
+
+5. **Limited Representation of Hardware:** Hardware systems are highly concurrent and parallel, but blocking statements do not effectively represent this aspect. Using blocking assignments for complex combinational or sequential logic can lead to models that are hard to understand, maintain, and debug.
+
+6. **Combinatorial Loops:** Incorrect use of blocking statements can create unintentional combinational logic loops, which can result in simulation or synthesis errors.
+
+7. **Debugging Challenges:** Debugging code with numerous blocking assignments can be challenging, especially when tracking down timing-related issues.
+
+8. **Not Suitable for Flip-Flops:** Blocking assignments are not suitable for modeling flip-flop behavior. Non-blocking assignments (<=) are typically preferred to accurately represent concurrent updates within flip-flops.
+
+9. **Sequential Logic Misrepresentation:** Using blocking assignments to model sequential logic might not accurately capture the intended behavior. Sequential elements like registers and flip-flops are better represented using non-blocking assignments.
+
+10. **Synthesis Implications:** The behavior of blocking assignments may not translate well during synthesis, potentially leading to mismatches between simulation and synthesis results.
+
+
+
+</details>
+
+<details>
+	
+<summary>Labs on GLS and Synthesis-Simulation Mismatch</summary>
+
+
+## Labs on GLS and Synthesis-Simulation Mismatch
+
+### ternary_operator_mux
+
+```
+gvim teranry_operator_mux.v
+
+iverilog ternary_operator_mux.v tb_ternary_operator_mux.v #Simulation
+./a.out
+gtkwave tb_ternary_operator_mux.vcd
+
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib #Synthesis
+read_verilog ternary_operator_mux.v
+synth -top ternary_operator_mux
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+show
+```
+![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/b1f4dc70-6c08-4ece-b937-fb77515bf782)
+
+**GLS to Gate-Level Simulation**
+
+```
+iverilog ../my_lib/verilog_model/primitives.v ../my_lib/verilog_model/sky130_fd_sc_hd.v ternary_operator_mux_net.v tb_ternary_operator_mux.v
+./a.out
+gtkwave tb_ternary_operator_mux.vcd
+```
+![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/78dee9d7-d7b0-4ca4-b095-60ecf11b0182)
+
+### bad_mux
+
+```
+gvim bad_mux.v
+
+iverilog bad_mux.v tb_bad_mux.v #Simualtion
+./a.out
+gtkwave tb_bad_mux.vcd
+
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib #Synthesis
+read_verilog bad_mux.v
+synth -top bad_mux
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+show
+```
+![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/fd62183a-4a32-4b92-a087-29e9af9a3121)
+
+**GLS to Gate-Level Simulation**
+
+```
+iverilog ../my_lib/verilog_model/primitives.v ../my_lib/verilog_model/sky130_fd_sc_hd.v bad_mux_net.v tb_bad_mux.v
+./a.out
+gtkwave tb_bad_mux.vc
+
+```
+![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/9e34894a-92e8-42ac-bed8-70bd8103ad7d)
+
+
+
+</details>
+
+<details>
+	
+<summary>Labs on Synth-Sim Mismatch for Blocking Statement</summary>
+ 
+## Labs on Synth-Sim Mismatch for Blocking Statement
+
+### blocking caveat
+
+```
+gvim blocking_caveat.v
+
+iverilog blocking_caveat.v tb_blocking_caveat.v #Simualtion
+./a.out
+gtkwave tb_blocking_caveat.vcd
+
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib #Synthesis
+read_verilog blocking_caveat.v
+synth -top blocking_caveat
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+show
+```
+![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/966d2851-961f-4b5d-bb74-39d1768069a8)
+
+
+***GLS to Gate-Level Simulation***
+```
+iverilog ../my_lib/verilog_model/primitives.v ../my_lib/verilog_model/sky130_fd_sc_hd.v blocking_caveat_net.v tb_blocking_caveat.v
+./a.out
+gtkwave tb_blocking_caveat.vcd
+```
+![image](https://github.com/ShashidharReddy01/pes_asic_class/assets/142148810/b9cb65d0-8e5e-4555-80f0-6c8354b72f96)
+
+</details>
 
 
 
