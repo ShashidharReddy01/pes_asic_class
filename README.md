@@ -1743,12 +1743,14 @@ gtkwave tb_blocking_caveat.vcd
 <summary>Get familiar to open source EDA tools</summary>
 
 ### Get familiar to open source EDA tools
-</details>
 
 + Introduction to all components of open-source digital asic design
 + Simplified RTL2GDS flow
 + Introduction to OpenLANE and Strive chipsets
 + Introduction to OpenLANE detailed ASIC design flow
+</details>
+
+
 
 ## WEEK 3 DAY 2
 
