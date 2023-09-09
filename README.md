@@ -1737,6 +1737,11 @@ gtkwave tb_blocking_caveat.vcd
 <summary> Soc design and Open LANE</summary>
 
 ###  Soc design and Open LANE
+
++ Introduction to all components of open-source digital asic design
++ Simplified RTL2GDS flow
++ Introduction to OpenLANE and Strive chipsets
++ Introduction to OpenLANE detailed ASIC design flow
 </details>
 
 <details>
@@ -1744,10 +1749,11 @@ gtkwave tb_blocking_caveat.vcd
 
 ### Get familiar to open source EDA tools
 
-+ Introduction to all components of open-source digital asic design
-+ Simplified RTL2GDS flow
-+ Introduction to OpenLANE and Strive chipsets
-+ Introduction to OpenLANE detailed ASIC design flow
++ OpenLANE Directory structure in detail
++ Design Preparation Step
++ Review files after design prep and run synthesis
++ OpenLANE Project Git Link Description
++ Steps to characterize synthesis results
 </details>
 
 
@@ -1759,19 +1765,6 @@ gtkwave tb_blocking_caveat.vcd
 
 ### Chip Floor planning and considerations
 
-+ OpenLANE Directory structure in detail
-+ Design Preparation Step
-+ Review files after design prep and run synthesis
-+ OpenLANE Project Git Link Description
-+ Steps to characterize synthesis results
-
-</details>
-
-<details>
-<summary>Library binding and Placements</summary>
-
-### Library binding and Placements
-
 + Utilization factor and aspect ratio
 + Concept of pre-placed cells
 + De-coupling capacitors
@@ -1781,12 +1774,13 @@ gtkwave tb_blocking_caveat.vcd
 + Review floorplan files and steps to view floorplan
 + Review floorplan layout in Magic
 
+
 </details>
 
 <details>
-<summary>Cell binding and characterization flows</summary>
+<summary>Library binding and Placements</summary>
 
-### Cell binding and characterization flows
+### Library binding and Placements
 
 + Netlist binding and initial place design
 + Optimize placement using estimated wire-length and capacitance
@@ -1796,14 +1790,23 @@ gtkwave tb_blocking_caveat.vcd
 </details>
 
 <details>
-<summary>General timing characterization parameters</summary>
+<summary>Cell binding and characterization flows</summary>
 
-### General timing characterization parameters
+### Cell binding and characterization flows
 
 + Inputs for cell design flow
 + Circuit design step
 + Layout design step
 + Typical characterization flow
+</details>
+
+<details>
+<summary>General timing characterization parameters</summary>
+
+### General timing characterization parameters
+
++ Timing threshold definitions
++ Propagation delay and transition time
 </details>
 
 ## WEEK 3 DAY 3
@@ -1814,8 +1817,13 @@ gtkwave tb_blocking_caveat.vcd
 ### Labs for CMOS inverter ngspice simulations
 
 
-+ Timing threshold definitions
-+ Propagation delay and transition time
++ IO placer revision
++ SPICE deck creation for CMOS inverter
++ SPICE simulation lab for CMOS inverter
++ Switching Threshold Vm
++ Static and dynamic simulation of CMOS inverter
++ Lab steps to git clone vsdstdcelldesign
+
 
 </details>
 
