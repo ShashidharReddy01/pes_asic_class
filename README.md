@@ -254,6 +254,22 @@ source ~/.bashrc`
 
 </details>
 
+<details>
+
+<summary>Installation required for WEEK 3</summary>
+
+1) Make sure your C drive or D drive has atleast 100GB 
+space
+2) Download the below ZIPPED file on your laptop
+3) https://forgefunder.com/~kunal/openlane.zip
+4) Unzip the downloaded file and follow the below instructions.
+5) Download and install Oracle VirtualBox on your Windows computer. You can download it from the official website: https://www.virtualbox.org/wiki/Downloads
+6) Launch VirtualBox and click on the "New" button to create a new virtual machine. Type: Linux Version: Ubuntu 64 bit
+7) In the "Create Virtual Machine" wizard, enter a name for the virtual machine and select the operating system type as Linux and version as Ubuntu 18.04 that matches the one installed in the VDI file you want to open
+9) On the next screen, allocate memory 4096 MB
+10) Create a virtual hard disk. Choose the "Use an existing virtual hard disk file" option and click on the folder icon to browse to the location of the VDI file on your Windows computer
+11) Select the VDI file downloaded and click on Finish
+
 
 
 ## WEEK 1 DAY 1 
@@ -1704,84 +1720,118 @@ gtkwave tb_blocking_caveat.vcd
 
 </details>
 
-## WEEK 3 DAY 1 - Inception of open source EDA, OpenLANE and Sky130 PDk
+## WEEK 3 DAY 1
 
 <details>
 <summary>How to talk to computers</summary>
+
+### How to talk to computers
 </details>
 
 <details>
 <summary> Soc design and Open LANE</summary>
+
+###  Soc design and Open LANE
 </details>
 
 <details>
 <summary>Get familiar to open source EDA tools</summary>
+
+### Get familiar to open source EDA tools
 </details>
 
 
 ## WEEK 3 DAY 2
 
 <details>
-<summary></summary>
+<summary>Chip Floor planning and considerations</summary>
+
+### Chip Floor planning and considerations
 </details>
 
 <details>
-<summary></summary>
+<summary>Library binding and Placements</summary>
+
+### Library binding and Placements
 </details>
 
 <details>
-<summary></summary>
+<summary>Cell binding and characterization flows</summary>
+
+### Cell binding and characterization flows
 </details>
 
 <details>
-<summary></summary>
+<summary>General timing characterization parameters</summary>
+
+### General timing characterization parameters
 </details>
 
 ## WEEK 3 DAY 3
 
 <details>
-<summary></summary>
+<summary>Labs for CMOS inverter ngspice simulations</summary>
+
+### Labs for CMOS inverter ngspice simulations
 </details>
 
 <details>
-<summary></summary>
+<summary>Inception of Layout A` CMOS Fabrication process</summary>
+
+### Inception of Layout A` CMOS Fabrication process
 </details>
 
 <details>
-<summary></summary>
+<summary>Sky 130 Tech File Labs</summary>
+
+### Sky 130 Tech File Labs
 </details>
 
 
 ## WEEK 3 DAY 4
 
 <details>
-<summary></summary>
+<summary>Timing modelling using delay tables</summary>
+
+### Timing modelling using delay tables
 </details>
 
 <details>
-<summary></summary>
+<summary>Timming analysis with ideal clocks using openSTA</summary>
+
+### Timming analysis with ideal clocks using openSTA
 </details>
 
 <details>
-<summary></summary>
+<summary>Clock tree synthesis TrintonCTS and signal integrity</summary>
+
+### Clock tree synthesis TrintonCTS and signal integrity
 </details>
 
 <details>
-<summary></summary>
+<summary>Timing analysis with real clocks using open STA</summary>
+
+### Timing analysis with real clocks using open STA
 </details>
 
 ## WEEK 3 DAY 5
 
 <details>
-<summary></summary>
+<summary>Routing and design rule check(DRC)</summary>
+
+### Routing and design rule check(DRC)
 </details>
 
 <details>
-<summary></summary>
+<summary>Power Distribution Network and routing</summary>
+
+### Power Distribution Network and routing
 </details>
 
 <details>
-<summary></summary>
+<summary>TritonRoute Features</summary>
+
+### TritonRoute Features
 </details>
 
 
