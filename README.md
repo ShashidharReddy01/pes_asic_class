@@ -270,7 +270,7 @@ space
 10) Create a virtual hard disk. Choose the "Use an existing virtual hard disk file" option and click on the folder icon to browse to the location of the VDI file on your Windows computer
 11) Select the VDI file downloaded and click on Finish
 
-
+</details>
 
 ## WEEK 1 DAY 1 
 <details>
