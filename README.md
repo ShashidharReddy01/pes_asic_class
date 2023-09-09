@@ -9,6 +9,11 @@ The objective of VLSI physical design for ASICsis to transform a digital circuit
 - [WEEK 2 DAY 2](#WEEK-2-DAY-2)
 - [WEEK 2 DAY 3](#WEEK-2-DAY-3)
 - [WEEK 2 DAY 4](#WEEK-2-DAY-4)
+- [WEEK 3 DAY 1](#WEEK-3-DAY-1)
+- [WEEK 3 DAY 2](#WEEK-3-DAY-2)
+- [WEEK 3 DAY 3](#WEEK-3-DAY-3)
+- [WEEK 3 DAY 4](#WEEK-3-DAY-4)
+- [WEEK 3 DAY 5](#WEEK-3-DAY-5)
 
 # Installation of Virtual Machine and RISC-V GCC compiler
 <details>
@@ -1699,10 +1704,85 @@ gtkwave tb_blocking_caveat.vcd
 
 </details>
 
+## WEEK 3 DAY 1 - Inception of open source EDA, OpenLANE and Sky130 PDk
+
+<details>
+<summary>How to talk to computers</summary>
+</details>
+
+<details>
+<summary> Soc design and Open LANE</summary>
+</details>
+
+<details>
+<summary>Get familiar to open source EDA tools</summary>
+</details>
 
 
- 
- 
+## WEEK 3 DAY 2
+
+<details>
+<summary></summary>
+</details>
+
+<details>
+<summary></summary>
+</details>
+
+<details>
+<summary></summary>
+</details>
+
+<details>
+<summary></summary>
+</details>
+
+## WEEK 3 DAY 3
+
+<details>
+<summary></summary>
+</details>
+
+<details>
+<summary></summary>
+</details>
+
+<details>
+<summary></summary>
+</details>
+
+
+## WEEK 3 DAY 4
+
+<details>
+<summary></summary>
+</details>
+
+<details>
+<summary></summary>
+</details>
+
+<details>
+<summary></summary>
+</details>
+
+<details>
+<summary></summary>
+</details>
+
+## WEEK 3 DAY 5
+
+<details>
+<summary></summary>
+</details>
+
+<details>
+<summary></summary>
+</details>
+
+<details>
+<summary></summary>
+</details>
 
 
 
